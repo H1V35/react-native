@@ -3,7 +3,8 @@
 // import { BasicFunctions } from '@/typescript/BasicFunctions';
 // import { Counter } from '@/components/Counter';
 // import { CounterWithHook } from '@/components/CounterWithHook';
-import { LoginPage } from '@/components/LoginPage';
+// import { LoginPage } from '@/components/LoginPage';
+import { UsersPage } from '@/components/UsersPage';
 
 export default function App() {
   return (
@@ -15,7 +16,8 @@ export default function App() {
       {/* <BasicFunctions /> */}
       {/* <Counter /> */}
       {/* <CounterWithHook /> */}
-      <LoginPage />
+      {/* <LoginPage /> */}
+      <UsersPage />
     </main>
   );
 }
