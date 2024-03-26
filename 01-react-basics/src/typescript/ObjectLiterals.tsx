@@ -22,7 +22,7 @@ export function ObjectLiterals() {
   };
 
   return (
-    <div className="mt-10">
+    <div>
       <h3 className="text-2xl">Object Literals</h3>
       <br />
       <pre>{JSON.stringify(person, null, 2)}</pre>

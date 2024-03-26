@@ -4,7 +4,7 @@ export function CounterWithHook() {
   const { count, toggleCount } = useCounter({ initialValue: 33 });
 
   return (
-    <div className="mt-10">
+    <div>
       <h3 className="text-2xl">
         Counter: <small>{count}</small>
       </h3>

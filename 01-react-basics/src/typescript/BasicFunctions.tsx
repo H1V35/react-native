@@ -4,7 +4,7 @@ export function BasicFunctions() {
   };
 
   return (
-    <div className="mt-10">
+    <div>
       <h3 className="text-2xl">Basic Functions</h3>
       <br />
       <p>Sum result is: {addTwoNumber(2, 8)}</p>

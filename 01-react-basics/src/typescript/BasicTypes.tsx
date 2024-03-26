@@ -8,7 +8,7 @@ export function BasicTypes() {
   powers.push('Next');
 
   return (
-    <div className="mt-10">
+    <div>
       <h3 className="text-2xl">Basic Types</h3>
       <br />
       {name} {age} {`Status: ${isActive ? 'Active' : 'Inactive'}`}
