@@ -17,21 +17,23 @@ export function LoginPage() {
   if (authStatus === 'checking') return <h3>Loading...</h3>;
 
   return (
-    <div className="flex flex-col gap-6 text-center">
+    <div className="flex flex-col gap-8 text-center">
       <h3 className="text-2xl">Login Page</h3>
 
       {authStatus === 'authenticated' ? (
-        <div>
-          Authenticated as: <pre className="mt-2 text-start">{JSON.stringify(user, null, 2)}</pre>
+        <div className="flex flex-col gap-4">
+          <h4>Authenticated as:</h4>
+
+          <pre className="text-start">{JSON.stringify(user, null, 2)}</pre>
+
+          <button onClick={logout}>Logout</button>
         </div>
       ) : (
-        <div>Not authenticated</div>
-      )}
+        <div className="flex flex-col gap-4">
+          <h4>Not authenticated</h4>
 
-      {authStatus === 'authenticated' ? (
-        <button onClick={logout}>Logout</button>
-      ) : (
-        <button onClick={() => login('fernando@alonso.es', '1233')}>Login</button>
+          <button onClick={() => login('fernando@alonso.es', '1233')}>Login</button>
+        </div>
       )}
     </div>
   );
