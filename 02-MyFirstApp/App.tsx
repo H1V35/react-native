@@ -1,3 +1,4 @@
+import { Ionicons } from '@expo/vector-icons';
 import React from 'react';
 import { SafeAreaView, StyleSheet } from 'react-native';
 import { PaperProvider } from 'react-native-paper';
@@ -8,7 +9,10 @@ import { CounterM3Screen } from '~/presentation/screens/CounterM3Screen';
 
 export default function App() {
   return (
-    <PaperProvider>
+    <PaperProvider
+      settings={{
+        icon: (props) => <Ionicons {...props} />,
+      }}>
       <SafeAreaView style={styles.container}>
         {/* <HelloWorldScreen name="Hive" /> */}
         {/* <CounterScreen /> */}
