@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     backgroundColor: Platform.OS === 'ios' ? '#339fff' : '#41b553',
     paddingHorizontal: 20,
     paddingVertical: 10,
-    borderRadius: 10,
+    borderRadius: 9999,
   },
   buttonPressed: {
     backgroundColor: Platform.OS === 'ios' ? '#238deb' : '#3ba34b',
