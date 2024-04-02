@@ -1,7 +1,8 @@
 import React from 'react';
 import { SafeAreaView, StyleSheet } from 'react-native';
-import { HelloWorldScreen } from '~/presentation/screens/HelloWorldScreen';
-import { CounterScreen } from './src/presentation/screens/CounterScreen';
+
+import { CounterScreen } from '~/presentation/screens/CounterScreen';
+// import { HelloWorldScreen } from '~/presentation/screens/HelloWorldScreen';
 
 export default function App() {
   return (
