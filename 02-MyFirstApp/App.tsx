@@ -5,7 +5,7 @@ import { HelloWorldScreen } from '~/presentation/screens/HelloWorldScreen';
 export default function App() {
   return (
     <SafeAreaView style={styles.container}>
-      <HelloWorldScreen />
+      <HelloWorldScreen name="Hive" />
     </SafeAreaView>
   );
 }
