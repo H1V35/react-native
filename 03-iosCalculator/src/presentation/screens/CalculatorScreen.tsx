@@ -6,7 +6,6 @@ import { useCalculator } from '~/presentation/hooks/useCalculator';
 
 export function CalculatorScreen() {
   const {
-    number,
     prevNumber,
     formula,
     clean,
@@ -26,9 +25,14 @@ export function CalculatorScreen() {
         <Text adjustsFontSizeToFit numberOfLines={1} style={globalStyles.mainResult}>
           {formula}
         </Text>
-        <Text adjustsFontSizeToFit numberOfLines={1} style={globalStyles.subResult}>
-          {prevNumber === '0' ? ' ' : prevNumber}
-        </Text>
+
+        {formula === prevNumber ? (
+          <Text style={globalStyles.subResult}> </Text>
+        ) : (
+          <Text adjustsFontSizeToFit numberOfLines={1} style={globalStyles.subResult}>
+            {prevNumber}
+          </Text>
+        )}
       </View>
 
       <View style={globalStyles.row}>
