@@ -3,7 +3,8 @@ import React from 'react';
 import { SafeAreaView, StyleSheet } from 'react-native';
 import { PaperProvider } from 'react-native-paper';
 
-import { DimensionScreen } from '~/presentation/screens/DimensionScreen';
+import { PositionScreen } from '~/presentation/screens/PositionScreen';
+// import { DimensionScreen } from '~/presentation/screens/DimensionScreen';
 // import { BoxObjectModelScreen } from '~/presentation/screens/BoxObjectModelScreen';
 // import { CounterM3Screen } from '~/presentation/screens/CounterM3Screen';
 // import { CounterScreen } from '~/presentation/screens/CounterScreen';
@@ -20,7 +21,8 @@ export default function App() {
         {/* <CounterScreen /> */}
         {/* <CounterM3Screen /> */}
         {/* <BoxObjectModelScreen /> */}
-        <DimensionScreen />
+        {/* <DimensionScreen /> */}
+        <PositionScreen />
       </SafeAreaView>
     </PaperProvider>
   );
