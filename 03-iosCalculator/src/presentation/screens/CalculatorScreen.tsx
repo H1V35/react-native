@@ -8,6 +8,7 @@ export function CalculatorScreen() {
   const {
     number,
     prevNumber,
+    formula,
     clean,
     deleteOperation,
     toggleSign,
@@ -23,7 +24,7 @@ export function CalculatorScreen() {
     <View style={globalStyles.calculatorContainer}>
       <View style={{ paddingHorizontal: 30, paddingBottom: 20 }}>
         <Text adjustsFontSizeToFit numberOfLines={1} style={globalStyles.mainResult}>
-          {number}
+          {formula}
         </Text>
         <Text adjustsFontSizeToFit numberOfLines={1} style={globalStyles.subResult}>
           {prevNumber === '0' ? ' ' : prevNumber}

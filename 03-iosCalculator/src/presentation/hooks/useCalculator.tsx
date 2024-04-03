@@ -1,21 +1,33 @@
 import React from 'react';
 
 enum Operator {
-  add,
-  subtract,
-  multiply,
-  divide,
+  add = '+',
+  subtract = '-',
+  multiply = '×',
+  divide = '÷',
 }
 
 export function useCalculator() {
+  const [formula, setFormula] = React.useState('');
   const [number, setNumber] = React.useState('0');
   const [prevNumber, setPrevNumber] = React.useState('0');
 
   const lastOperation = React.useRef<Operator>();
 
+  React.useEffect(() => {
+    if (lastOperation.current) {
+      const firstFormulaPart = formula.split(' ').at(0);
+      setFormula(`${firstFormulaPart} ${lastOperation.current} ${number}`);
+    } else {
+      setFormula(number);
+    }
+  }, [number]);
+
   const clean = () => {
     setNumber('0');
     setPrevNumber('0');
+    lastOperation.current = undefined;
+    setFormula('');
   };
 
   const deleteOperation = () => {
@@ -103,36 +115,43 @@ export function useCalculator() {
   };
 
   const calculateResult = () => {
-    const num1 = Number(number);
-    const num2 = Number(prevNumber);
+    const result = calculateSubResult();
+    setFormula(`${result}`);
 
-    switch (lastOperation.current) {
+    lastOperation.current = undefined;
+    setPrevNumber('0');
+  };
+
+  const calculateSubResult = (): number => {
+    const [firstValue, operation, secondValue] = formula.split(' ');
+
+    const num1 = Number(firstValue);
+    const num2 = Number(secondValue);
+
+    if (isNaN(num2)) return num1;
+
+    switch (operation) {
       case Operator.add:
-        setNumber(`${num2 + num1}`);
-        break;
+        return num1 + num2;
 
       case Operator.subtract:
-        setNumber(`${num2 - num1}`);
-        break;
+        return num1 - num2;
 
       case Operator.multiply:
-        setNumber(`${num2 * num1}`);
-        break;
+        return num1 * num2;
 
       case Operator.divide:
-        setNumber(`${num2 / num1}`);
-        break;
+        return num1 / num2;
 
       default:
         throw new Error('Operation not implemented');
     }
-
-    setPrevNumber('0');
   };
 
   return {
     number,
     prevNumber,
+    formula,
     clean,
     deleteOperation,
     toggleSign,
