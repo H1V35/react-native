@@ -3,16 +3,15 @@
     "name": "05-ContextApp",
     "slug": "05-ContextApp",
     "version": "1.0.0",
-    
-      "web": {
-        "favicon": "./assets/favicon.png"
-      },
-      
-        "experiments": {
-          "tsconfigPaths": true
-        },
-       
-    
+
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+
+    "experiments": {
+      "tsconfigPaths": true
+    },
+
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -21,9 +20,7 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true
     },
@@ -33,6 +30,5 @@
         "backgroundColor": "#ffffff"
       }
     }
-     
   }
 }
