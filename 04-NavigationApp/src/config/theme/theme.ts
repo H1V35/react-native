@@ -21,7 +21,7 @@ export const globalStyles = StyleSheet.create({
 
   primaryButton: {
     backgroundColor: globalColors.primary,
-    borderRadius: 5,
+    borderRadius: 100,
     padding: 10,
     marginBottom: 10,
     width: '100%',
