@@ -3,7 +3,8 @@ import React from 'react';
 import { SafeAreaView, StyleSheet } from 'react-native';
 import { PaperProvider } from 'react-native-paper';
 
-import FlexDirectionScreen from '~/presentation/screens/FlexDirectionScreen';
+import FlexAlignScreen from '~/presentation/screens/FlexAlignScreen';
+// import FlexDirectionScreen from '~/presentation/screens/FlexDirectionScreen';
 // import FlexScreen from '~/presentation/screens/FlexScreen';
 // import { PositionScreen } from '~/presentation/screens/PositionScreen';
 // import { DimensionScreen } from '~/presentation/screens/DimensionScreen';
@@ -26,7 +27,8 @@ export default function App() {
         {/* <DimensionScreen /> */}
         {/* <PositionScreen /> */}
         {/* <FlexScreen /> */}
-        <FlexDirectionScreen />
+        {/* <FlexDirectionScreen /> */}
+        <FlexAlignScreen />
       </SafeAreaView>
     </PaperProvider>
   );
