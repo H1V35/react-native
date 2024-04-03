@@ -1,17 +1,14 @@
 import React from 'react';
-import { SafeAreaView, StyleSheet, Text } from 'react-native';
+import { StatusBar, View } from 'react-native';
+
+import { globalStyles } from '~/config/theme/app-theme';
+import { CalculatorScreen } from '~/presentation/screens/CalculatorScreen';
 
 export default function App() {
   return (
-    <SafeAreaView style={styles.container}>
-      <Text>Hello World</Text>
-    </SafeAreaView>
+    <View style={globalStyles.background}>
+      <StatusBar barStyle="light-content" backgroundColor="black" />
+      <CalculatorScreen />
+    </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-});
