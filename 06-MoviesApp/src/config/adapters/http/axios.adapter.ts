@@ -22,7 +22,7 @@ export class AxiosAdapter implements HttpAdapter {
       const { data } = await this.axiosInstance.get<T>(url, options);
       return data;
     } catch (error) {
-      console.log('Error fetching get', error);
+      console.log(error);
       throw new Error(`Error fetching get: ${url}`);
     }
   }
