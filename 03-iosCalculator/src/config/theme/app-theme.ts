@@ -15,11 +15,13 @@ export const globalStyles = StyleSheet.create({
     backgroundColor: colors.background,
     flex: 1,
   },
+
   calculatorContainer: {
     flex: 1,
     padding: 20,
     justifyContent: 'flex-end',
   },
+
   mainResult: {
     color: colors.textPrimary,
     fontSize: 70,
@@ -27,10 +29,36 @@ export const globalStyles = StyleSheet.create({
     marginBottom: 10,
     fontWeight: '400',
   },
+
   subResult: {
     color: colors.textSecondary,
     fontSize: 40,
     textAlign: 'right',
+    fontWeight: '300',
+  },
+
+  row: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginBottom: 18,
+    paddingHorizontal: 10,
+  },
+
+  button: {
+    backgroundColor: colors.darkGray,
+    height: 80,
+    width: 80,
+    borderRadius: 100,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginHorizontal: 10,
+  },
+
+  buttonText: {
+    textAlign: 'center',
+    padding: 10,
+    fontSize: 30,
+    color: '#FFFFFF',
     fontWeight: '300',
   },
 });
