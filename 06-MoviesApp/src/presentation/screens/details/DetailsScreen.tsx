@@ -1,9 +1,9 @@
 import { Text, View } from 'react-native';
 
-export default function App() {
+export function DetailsScreen() {
   return (
     <View>
-      <Text>MoviesApp</Text>
+      <Text>DetailsScreen</Text>
     </View>
   );
 }
