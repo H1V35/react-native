@@ -3,7 +3,8 @@ import React from 'react';
 import { SafeAreaView, StyleSheet } from 'react-native';
 import { PaperProvider } from 'react-native-paper';
 
-import FlexScreen from '~/presentation/screens/FlexScreen';
+import FlexDirectionScreen from '~/presentation/screens/FlexDirectionScreen';
+// import FlexScreen from '~/presentation/screens/FlexScreen';
 // import { PositionScreen } from '~/presentation/screens/PositionScreen';
 // import { DimensionScreen } from '~/presentation/screens/DimensionScreen';
 // import { BoxObjectModelScreen } from '~/presentation/screens/BoxObjectModelScreen';
@@ -24,7 +25,8 @@ export default function App() {
         {/* <BoxObjectModelScreen /> */}
         {/* <DimensionScreen /> */}
         {/* <PositionScreen /> */}
-        <FlexScreen />
+        {/* <FlexScreen /> */}
+        <FlexDirectionScreen />
       </SafeAreaView>
     </PaperProvider>
   );
