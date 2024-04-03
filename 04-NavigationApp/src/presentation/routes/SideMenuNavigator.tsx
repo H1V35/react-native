@@ -1,3 +1,4 @@
+import { Ionicons } from '@expo/vector-icons';
 import {
   DrawerContentComponentProps,
   DrawerContentScrollView,
@@ -32,8 +33,22 @@ export function SideMenuNavigator() {
         },
       }}>
       {/* <Drawer.Screen name="StackNavigator" component={StackNavigator} /> */}
-      <Drawer.Screen name="Tabs" component={BottomTabsNavigator} />
-      <Drawer.Screen name="Profile" component={ProfileScreen} />
+      <Drawer.Screen
+        options={{
+          drawerIcon: ({ color }) => <Ionicons name="bonfire-outline" size={20} color={color} />,
+        }}
+        name="Tabs"
+        component={BottomTabsNavigator}
+      />
+      <Drawer.Screen
+        options={{
+          drawerIcon: ({ color }) => (
+            <Ionicons name="person-circle-outline" size={20} color={color} />
+          ),
+        }}
+        name="Profile"
+        component={ProfileScreen}
+      />
     </Drawer.Navigator>
   );
 }

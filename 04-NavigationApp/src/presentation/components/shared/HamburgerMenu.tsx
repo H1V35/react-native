@@ -1,6 +1,9 @@
+import { Ionicons } from '@expo/vector-icons';
 import { DrawerActions, useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { Pressable, Text } from 'react-native';
+import { Pressable } from 'react-native';
+
+import { globalColors } from '~/config/theme/theme';
 
 export function HamburgerMenu() {
   const navigation = useNavigation();
@@ -8,8 +11,10 @@ export function HamburgerMenu() {
   React.useEffect(() => {
     navigation.setOptions({
       headerLeft: () => (
-        <Pressable onPress={() => navigation.dispatch(DrawerActions.toggleDrawer)}>
-          <Text>Menu</Text>
+        <Pressable
+          style={{ marginLeft: 5 }}
+          onPress={() => navigation.dispatch(DrawerActions.toggleDrawer)}>
+          <Ionicons name="menu-outline" size={30} color={globalColors.primary} />
         </Pressable>
       ),
     });

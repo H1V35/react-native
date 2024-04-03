@@ -1,5 +1,5 @@
+import { Ionicons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Text } from 'react-native';
 
 import { StackNavigator } from './StackNavigator';
 import { TopTabsNavigator } from './TopTabsNavigator';
@@ -19,6 +19,7 @@ export function BottomTabsNavigator() {
       }}
       screenOptions={{
         // headerShown: false,
+        tabBarActiveTintColor: globalColors.primary,
         tabBarLabelStyle: {
           marginBottom: 5,
         },
@@ -33,17 +34,28 @@ export function BottomTabsNavigator() {
       }}>
       <Tab.Screen
         name="Tab1"
-        options={{ title: 'Tab1', tabBarIcon: ({ color }) => <Text style={{ color }}>Tab1</Text> }}
+        options={{
+          title: 'Tab1',
+          tabBarIcon: ({ color }) => (
+            <Ionicons name="accessibility-outline" size={20} color={color} />
+          ),
+        }}
         component={Tab1Screen}
       />
       <Tab.Screen
         name="Tab2"
-        options={{ title: 'Tab2', tabBarIcon: ({ color }) => <Text style={{ color }}>Tab2</Text> }}
+        options={{
+          title: 'Tab2',
+          tabBarIcon: ({ color }) => <Ionicons name="airplane-outline" size={20} color={color} />,
+        }}
         component={TopTabsNavigator}
       />
       <Tab.Screen
         name="Tab3"
-        options={{ title: 'Tab3', tabBarIcon: ({ color }) => <Text style={{ color }}>Tab3</Text> }}
+        options={{
+          title: 'Tab3',
+          tabBarIcon: ({ color }) => <Ionicons name="bar-chart-outline" size={20} color={color} />,
+        }}
         component={StackNavigator}
       />
     </Tab.Navigator>
