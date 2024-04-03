@@ -6,6 +6,7 @@ import {
 } from '@react-navigation/drawer';
 import { View, useWindowDimensions } from 'react-native';
 
+import { BottomTabsNavigator } from './BottomTabsNavigator';
 import { StackNavigator } from './StackNavigator';
 
 import { globalColors } from '~/config/theme/theme';
@@ -30,7 +31,8 @@ export function SideMenuNavigator() {
           paddingHorizontal: 20,
         },
       }}>
-      <Drawer.Screen name="StackNavigator" component={StackNavigator} />
+      {/* <Drawer.Screen name="StackNavigator" component={StackNavigator} /> */}
+      <Drawer.Screen name="Tabs" component={BottomTabsNavigator} />
       <Drawer.Screen name="Profile" component={ProfileScreen} />
     </Drawer.Navigator>
   );
