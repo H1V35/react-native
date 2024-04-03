@@ -7,7 +7,7 @@ import {
 import { View, useWindowDimensions } from 'react-native';
 
 import { BottomTabsNavigator } from './BottomTabsNavigator';
-import { StackNavigator } from './StackNavigator';
+// import { StackNavigator } from './StackNavigator';
 
 import { globalColors } from '~/config/theme/theme';
 import { ProfileScreen } from '~/presentation/screens/profile/ProfileScreen';
