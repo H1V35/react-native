@@ -3,7 +3,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import { HomeScreen } from '~/presentation/screens/home/HomeScreen';
 import { ProfileScreen } from '~/presentation/screens/profile/ProfileScreen';
-import { SettingsScreen } from '~/presentation/screens/settings/SettingsScreen';
+import { CountScreen } from '~/presentation/screens/settings/CountScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -42,12 +42,12 @@ export function BottomTabNavigator() {
         component={ProfileScreen}
       />
       <Tab.Screen
-        name="Settings"
+        name="Count"
         options={{
-          title: 'Settings',
-          tabBarIcon: ({ color }) => <Ionicons name="settings-outline" size={20} color={color} />,
+          title: 'Count',
+          tabBarIcon: ({ color }) => <Ionicons name="add-outline" size={20} color={color} />,
         }}
-        component={SettingsScreen}
+        component={CountScreen}
       />
     </Tab.Navigator>
   );
