@@ -34,7 +34,7 @@ export function MovieDetails({ movie }: Props) {
             fontWeight: '500',
             marginHorizontal: 20,
           }}>
-          Casting
+          Cast
         </Text>
       </View>
     </>
