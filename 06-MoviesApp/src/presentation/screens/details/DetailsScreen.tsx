@@ -1,6 +1,8 @@
 import { type StackScreenProps } from '@react-navigation/stack';
-import { Text, View } from 'react-native';
+import { Text } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
 
+import { MovieDetails } from '~/presentation/components/movie/MovieDetails';
 import { MovieHeader } from '~/presentation/components/movie/MovieHeader';
 import { useMovie } from '~/presentation/hooks/useMovie';
 import { type RootStackParams } from '~/presentation/navigation/Navigation';
@@ -17,12 +19,14 @@ export function DetailsScreen({ route }: Props) {
   }
 
   return (
-    <View>
+    <ScrollView showsVerticalScrollIndicator={false}>
       <MovieHeader
         originalTitle={movie!.originalTitle}
         title={movie!.title}
         poster={movie!.poster}
       />
-    </View>
+
+      <MovieDetails movie={movie!} />
+    </ScrollView>
   );
 }
