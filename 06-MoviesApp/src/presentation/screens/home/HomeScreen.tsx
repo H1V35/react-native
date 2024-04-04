@@ -1,7 +1,8 @@
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
+import { FullScreenLoader } from '~/presentation/components/loaders/FullScreenLoader';
 import { HorizontalCarousel } from '~/presentation/components/movies/HorizontalCarousel';
 import { PosterCarousel } from '~/presentation/components/movies/PosterCarousel';
 import { useMovies } from '~/presentation/hooks/useMovies';
@@ -12,7 +13,7 @@ export function HomeScreen() {
   const { isLoading, nowPlaying, popular, topRated, upcoming, popularNextPage } = useMovies();
 
   if (isLoading) {
-    return <Text>Loading...</Text>;
+    return <FullScreenLoader />;
   }
 
   return (
