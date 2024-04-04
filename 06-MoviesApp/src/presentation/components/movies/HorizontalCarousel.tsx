@@ -1,4 +1,5 @@
-import { Text, View } from 'react-native';
+import React from 'react';
+import { NativeScrollEvent, NativeSyntheticEvent, Text, View } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 
 import MoviePoster from './MoviePoster';
@@ -8,9 +9,31 @@ import { type Movie } from '~/core/entities/movie.entity';
 interface Props {
   movies: Movie[];
   title?: string;
+  loadNextPage?: () => void;
 }
 
-export function HorizontalCarousel({ movies, title }: Props) {
+export function HorizontalCarousel({ movies, title, loadNextPage }: Props) {
+  const isLoading = React.useRef(false);
+
+  React.useEffect(() => {
+    setTimeout(() => {
+      isLoading.current = false;
+    }, 600);
+  }, [movies]);
+
+  const onScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
+    if (isLoading.current && loadNextPage) return;
+
+    const { contentOffset, layoutMeasurement, contentSize } = event.nativeEvent;
+
+    const isEndReached = contentOffset.x + layoutMeasurement.width + 600 >= contentSize.width;
+    if (!isEndReached) return;
+
+    isLoading.current = true;
+
+    loadNextPage && loadNextPage();
+  };
+
   return (
     <View style={{ height: title ? 260 : 220 }}>
       {title && (
@@ -29,9 +52,10 @@ export function HorizontalCarousel({ movies, title }: Props) {
       <FlatList
         data={movies}
         renderItem={({ item }) => <MoviePoster movie={item} width={140} height={200} />}
-        keyExtractor={(item) => item.id.toString()}
+        keyExtractor={(item, index) => `${item.id}-${index}`}
         horizontal
         showsHorizontalScrollIndicator={false}
+        onScroll={onScroll}
       />
     </View>
   );
