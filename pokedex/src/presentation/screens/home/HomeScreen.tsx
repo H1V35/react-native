@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
+import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 import { StyleSheet, View } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 import { Text } from 'react-native-paper';
@@ -12,9 +12,17 @@ import { PokeballBg } from '~/presentation/components/ui/PokeballBg';
 export function HomeScreen() {
   const { top } = useSafeAreaInsets();
 
-  const { isLoading, data: pokemons = [] } = useQuery({
-    queryKey: ['pokemons'],
-    queryFn: () => getPokemons(0),
+  // const { isLoading, data: pokemons = [] } = useQuery({
+  //   queryKey: ['pokemons'],
+  //   queryFn: () => getPokemons(0),
+  //   staleTime: 1000 * 60 * 60,
+  // });
+
+  const { isLoading, data, fetchNextPage } = useInfiniteQuery({
+    queryKey: ['pokemons', 'infinite'],
+    initialPageParam: 0,
+    queryFn: (params) => getPokemons(params.pageParam),
+    getNextPageParam: (lastPage, pages) => pages.length,
     staleTime: 1000 * 60 * 60,
   });
 
@@ -23,13 +31,15 @@ export function HomeScreen() {
       <PokeballBg style={styles.imgPosition} />
 
       <FlatList
-        data={pokemons}
+        data={data?.pages.flat() ?? []}
         keyExtractor={(pokemon, index) => `${pokemon.id}-${index}`}
         numColumns={2}
         style={{ paddingTop: top + 20 }}
         showsVerticalScrollIndicator={false}
         ListHeaderComponent={() => <Text variant="displayMedium">Pokédex</Text>}
         renderItem={({ item }) => <PokemonCard pokemon={item} />}
+        onEndReachedThreshold={0.6}
+        onEndReached={() => fetchNextPage()}
       />
     </View>
   );
