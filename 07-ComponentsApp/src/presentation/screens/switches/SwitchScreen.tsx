@@ -3,6 +3,7 @@ import React from 'react';
 import { Card } from '~/presentation/components/ui/Card';
 import { CustomSwitch } from '~/presentation/components/ui/CustomSwitch';
 import { CustomView } from '~/presentation/components/ui/CustomView';
+import { Separator } from '~/presentation/components/ui/Separator';
 
 export function SwitchScreen() {
   const [state, setState] = React.useState({
@@ -12,7 +13,7 @@ export function SwitchScreen() {
   });
 
   return (
-    <CustomView style={{ marginTop: 100, paddingHorizontal: 10 }}>
+    <CustomView style={{ marginTop: 100 }}>
       <Card>
         <CustomSwitch
           isOn={state.isActive}
@@ -20,11 +21,15 @@ export function SwitchScreen() {
           text="Are you active?"
         />
 
+        <Separator />
+
         <CustomSwitch
           isOn={state.isHungry}
           onChange={(value) => setState({ ...state, isHungry: value })}
           text="Are you hungry?"
         />
+
+        <Separator />
 
         <CustomSwitch
           isOn={state.isHappy}

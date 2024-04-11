@@ -9,5 +9,7 @@ interface Props {
 }
 
 export function CustomView({ style, children }: Props) {
-  return <View style={[globalStyles.mainContainer, style]}>{children}</View>;
+  return (
+    <View style={[globalStyles.mainContainer, globalStyles.globalMargin, style]}>{children}</View>
+  );
 }
