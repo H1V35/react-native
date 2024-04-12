@@ -39,6 +39,17 @@ export function AlertScreen() {
       }
     );
 
+  const showPrompt = () => {
+    Alert.prompt(
+      'Password',
+      'Enim commodo ut amet esse aliqua',
+      (value: string) => console.log({ value }),
+      'secure-text',
+      "I'm the default value",
+      'number-pad'
+    );
+  };
+
   return (
     <CustomView>
       <Title safe text="Alerts" />
@@ -49,7 +60,7 @@ export function AlertScreen() {
       <Button text="Alert - 3 Buttons" onPress={createThreeButtonAlert} />
       <View style={{ height: 10 }} />
 
-      <Button text="Prompt - Input" onPress={() => {}} />
+      <Button text="Prompt - Input" onPress={showPrompt} />
     </CustomView>
   );
 }
