@@ -19,30 +19,40 @@ export const colors: ThemeColors = {
 
 export const globalStyles = StyleSheet.create({
   title: {
+    color: colors.text,
     fontSize: 30,
     fontWeight: 'bold',
-    color: colors.text,
   },
   subTitle: {
+    color: colors.text,
     fontSize: 20,
     fontWeight: 'bold',
+  },
+
+  input: {
+    borderColor: 'rgba(0,0,0,0.3)',
+    borderRadius: 10,
+    borderWidth: 1,
     color: colors.text,
+    height: 40,
+    margin: 12,
+    padding: 10,
   },
 
   mainContainer: {
-    flex: 1,
     backgroundColor: colors.background,
+    flex: 1,
   },
   globalMargin: {
-    paddingHorizontal: 20,
     flex: 1,
+    paddingHorizontal: 20,
   },
 
   btnPrimary: {
+    alignItems: 'center',
     backgroundColor: colors.primary,
     borderRadius: 10,
     padding: 10,
-    alignItems: 'center',
   },
   btnPrimaryText: {
     color: colors.text,

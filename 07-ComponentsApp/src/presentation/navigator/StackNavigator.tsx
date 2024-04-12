@@ -4,6 +4,7 @@ import { AlertScreen } from '~/presentation/screens/alerts/AlertScreen';
 import { Animation101Screen } from '~/presentation/screens/animations/Animation101Screen';
 import { Animation102Screen } from '~/presentation/screens/animations/Animation102Screen';
 import { HomeScreen } from '~/presentation/screens/home/HomeScreen';
+import { TextInputScreen } from '~/presentation/screens/inputs/TextInputScreen';
 import { SwitchScreen } from '~/presentation/screens/switches/SwitchScreen';
 
 const Stack = createStackNavigator();
@@ -20,6 +21,7 @@ export function StackNavigator() {
 
       <Stack.Screen name="SwitchScreen" component={SwitchScreen} />
       <Stack.Screen name="AlertScreen" component={AlertScreen} />
+      <Stack.Screen name="TextInputScreen" component={TextInputScreen} />
     </Stack.Navigator>
   );
 }

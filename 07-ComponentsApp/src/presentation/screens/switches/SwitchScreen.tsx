@@ -13,7 +13,7 @@ export function SwitchScreen() {
   });
 
   return (
-    <CustomView style={{ marginTop: 100 }}>
+    <CustomView style={{ marginTop: 100 }} margin>
       <Card>
         <CustomSwitch
           isOn={state.isActive}

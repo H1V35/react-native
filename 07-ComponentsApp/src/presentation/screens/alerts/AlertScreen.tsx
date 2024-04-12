@@ -61,7 +61,7 @@ export function AlertScreen() {
   };
 
   return (
-    <CustomView>
+    <CustomView margin>
       <Title safe text="Alerts" />
 
       <Button text="Alert - 2 Buttons" onPress={createTwoButtonAlert} />
