@@ -1,5 +1,6 @@
 import { Alert, View } from 'react-native';
 
+import { showPrompt } from '~/config/adapters/prompt.adapter';
 import { Button } from '~/presentation/components/ui/Button';
 import { CustomView } from '~/presentation/components/ui/CustomView';
 import { Title } from '~/presentation/components/ui/Title';
@@ -39,15 +40,24 @@ export function AlertScreen() {
       }
     );
 
-  const showPrompt = () => {
-    Alert.prompt(
-      'Password',
-      'Enim commodo ut amet esse aliqua',
-      (value: string) => console.log({ value }),
-      'secure-text',
-      "I'm the default value",
-      'number-pad'
-    );
+  const onShowPrompt = () => {
+    // ! react-native-prompt-android code adapter
+    showPrompt({
+      title: 'Lorem Ipsum',
+      subTitle: 'Lorem ipsum dolor sit amet consectetur adipisicing elit',
+      buttons: [{ text: 'Ok', onPress: () => console.log('Ok') }],
+      placeholder: 'Placeholder',
+    });
+
+    // ! Native code
+    // Alert.prompt(
+    //   'Password',
+    //   'Enim commodo ut amet esse aliqua',
+    //   (value: string) => console.log({ value }),
+    //   'secure-text',
+    //   "I'm the default value",
+    //   'number-pad'
+    // );
   };
 
   return (
@@ -60,7 +70,7 @@ export function AlertScreen() {
       <Button text="Alert - 3 Buttons" onPress={createThreeButtonAlert} />
       <View style={{ height: 10 }} />
 
-      <Button text="Prompt - Input" onPress={showPrompt} />
+      <Button text="Prompt - Input" onPress={onShowPrompt} />
     </CustomView>
   );
 }
