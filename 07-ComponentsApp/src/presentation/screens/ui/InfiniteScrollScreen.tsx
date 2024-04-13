@@ -1,8 +1,9 @@
 import React from 'react';
-import { ActivityIndicator, Image, View } from 'react-native';
+import { ActivityIndicator, View } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 
 import { colors } from '~/config/theme/theme';
+import { FadeInImage } from '~/presentation/components/ui/FadeInImage';
 
 export function InfiniteScrollScreen() {
   const [numbers, setNumbers] = React.useState([0, 1, 2, 3, 4, 5]);
@@ -39,9 +40,20 @@ interface ListItemProps {
 
 function ListItem({ number }: ListItemProps) {
   return (
-    <Image
-      source={{ uri: `https://picsum.photos/id/${number}/500/400` }}
-      style={{ height: 400, width: '100%' }}
+    <FadeInImage
+      uri={`https://picsum.photos/id/${number}/500/400`}
+      style={{
+        height: 400,
+        width: '100%',
+      }}
     />
+
+    // <Image
+    //   source={{ uri: `https://picsum.photos/id/${number}/500/400` }}
+    // style={{
+    //   height: 400,
+    //   width: '100%',
+    // }}
+    // />
   );
 }
