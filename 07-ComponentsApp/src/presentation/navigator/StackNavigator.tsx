@@ -7,6 +7,7 @@ import { HomeScreen } from '~/presentation/screens/home/HomeScreen';
 import { TextInputScreen } from '~/presentation/screens/inputs/TextInputScreen';
 import { SwitchScreen } from '~/presentation/screens/switches/SwitchScreen';
 import { CustomSectionListScreen } from '~/presentation/screens/ui/CustomSectionListScreen';
+import { InfiniteScrollScreen } from '~/presentation/screens/ui/InfiniteScrollScreen';
 import { ModalScreen } from '~/presentation/screens/ui/ModalScreen';
 import { PullToRefreshScreen } from '~/presentation/screens/ui/PullToRefreshScreen';
 
@@ -29,6 +30,7 @@ export function StackNavigator() {
       <Stack.Screen name="PullToRefreshScreen" component={PullToRefreshScreen} />
       <Stack.Screen name="CustomSectionListScreen" component={CustomSectionListScreen} />
       <Stack.Screen name="ModalScreen" component={ModalScreen} />
+      <Stack.Screen name="InfiniteScrollScreen" component={InfiniteScrollScreen} />
     </Stack.Navigator>
   );
 }
