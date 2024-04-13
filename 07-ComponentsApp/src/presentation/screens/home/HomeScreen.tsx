@@ -18,6 +18,24 @@ export const animationMenuItems = [
   },
 ];
 
+export const uiMenuItems = [
+  {
+    name: 'Switches',
+    icon: 'toggle-outline',
+    component: 'SwitchScreen',
+  },
+  {
+    name: 'Alerts',
+    icon: 'alert-circle-outline',
+    component: 'AlertScreen',
+  },
+  {
+    name: 'TextInputs',
+    icon: 'document-text-outline',
+    component: 'TextInputScreen',
+  },
+];
+
 export const menuItems = [
   {
     name: 'Pull to refresh',
@@ -51,24 +69,6 @@ export const menuItems = [
   },
 ];
 
-export const uiMenuItems = [
-  {
-    name: 'Switches',
-    icon: 'toggle-outline',
-    component: 'SwitchScreen',
-  },
-  {
-    name: 'Alerts',
-    icon: 'alert-circle-outline',
-    component: 'AlertScreen',
-  },
-  {
-    name: 'TextInputs',
-    icon: 'document-text-outline',
-    component: 'TextInputScreen',
-  },
-];
-
 export function HomeScreen() {
   return (
     <View style={[globalStyles.mainContainer]}>
@@ -86,22 +86,22 @@ export function HomeScreen() {
           ))}
 
           <View style={{ marginTop: 30 }} />
-          {menuItems.map((item, index) => (
-            <MenuItem
-              key={item.component}
-              {...item}
-              isFirst={index === 0}
-              isLast={index === menuItems.length - 1}
-            />
-          ))}
-
-          <View style={{ marginTop: 30 }} />
           {uiMenuItems.map((item, index) => (
             <MenuItem
               key={item.component}
               {...item}
               isFirst={index === 0}
               isLast={index === uiMenuItems.length - 1}
+            />
+          ))}
+
+          <View style={{ marginTop: 30 }} />
+          {menuItems.map((item, index) => (
+            <MenuItem
+              key={item.component}
+              {...item}
+              isFirst={index === 0}
+              isLast={index === menuItems.length - 1}
             />
           ))}
         </ScrollView>
