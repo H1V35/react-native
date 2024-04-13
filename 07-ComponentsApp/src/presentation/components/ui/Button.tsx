@@ -4,11 +4,11 @@ import { colors, globalStyles } from '~/config/theme/theme';
 
 interface Props {
   text: string;
-  styles?: StyleProp<ViewStyle>;
+  style?: StyleProp<ViewStyle>;
   onPress: () => void;
 }
 
-export function Button({ text, styles, onPress }: Props) {
+export function Button({ text, style, onPress }: Props) {
   return (
     <Pressable
       onPress={onPress}
@@ -18,6 +18,7 @@ export function Button({ text, styles, onPress }: Props) {
           opacity: pressed ? 0.8 : 1,
           backgroundColor: colors.primary,
         },
+        style,
       ]}>
       <Text
         style={[
