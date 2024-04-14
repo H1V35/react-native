@@ -10,6 +10,7 @@ import { CustomSectionListScreen } from '~/presentation/screens/ui/CustomSection
 import { InfiniteScrollScreen } from '~/presentation/screens/ui/InfiniteScrollScreen';
 import { ModalScreen } from '~/presentation/screens/ui/ModalScreen';
 import { PullToRefreshScreen } from '~/presentation/screens/ui/PullToRefreshScreen';
+import { SlidesScreen } from '~/presentation/screens/ui/SlidesScreen';
 
 const Stack = createStackNavigator();
 
@@ -31,6 +32,7 @@ export function StackNavigator() {
       <Stack.Screen name="CustomSectionListScreen" component={CustomSectionListScreen} />
       <Stack.Screen name="ModalScreen" component={ModalScreen} />
       <Stack.Screen name="InfiniteScrollScreen" component={InfiniteScrollScreen} />
+      <Stack.Screen name="SlidesScreen" component={SlidesScreen} />
     </Stack.Navigator>
   );
 }
