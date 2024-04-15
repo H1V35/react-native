@@ -3,10 +3,13 @@ import { RefreshControl } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { colors, globalStyles } from '~/config/theme/theme';
+import { globalStyles } from '~/config/theme/theme';
 import { Title } from '~/presentation/components/ui/Title';
+import { ThemeContext } from '~/presentation/context/ThemeContext';
 
 export function PullToRefreshScreen() {
+  const { colors } = React.useContext(ThemeContext);
+
   const [isRefreshing, setIsRefreshing] = React.useState(false);
 
   const { top } = useSafeAreaInsets();
@@ -25,7 +28,9 @@ export function PullToRefreshScreen() {
         <RefreshControl
           refreshing={isRefreshing}
           progressViewOffset={top}
-          colors={[colors.primary, 'blue']}
+          colors={[colors.text, 'blue']}
+          progressBackgroundColor={colors.cardBackground}
+          tintColor={colors.text}
           onRefresh={onRefresh}
         />
       }

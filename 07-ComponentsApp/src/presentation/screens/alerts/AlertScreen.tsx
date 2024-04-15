@@ -1,22 +1,34 @@
+import React from 'react';
 import { Alert, View } from 'react-native';
 
 import { showPrompt } from '~/config/adapters/prompt.adapter';
 import { Button } from '~/presentation/components/ui/Button';
 import { CustomView } from '~/presentation/components/ui/CustomView';
 import { Title } from '~/presentation/components/ui/Title';
+import { ThemeContext } from '~/presentation/context/ThemeContext';
 
 export function AlertScreen() {
-  const createTwoButtonAlert = () =>
-    Alert.alert('Alert Title', 'My Alert Msg', [
-      {
-        text: 'Cancel',
-        onPress: () => console.log('Cancel Pressed'),
-        style: 'destructive',
-      },
-      { text: 'OK', onPress: () => console.log('OK Pressed') },
-    ]);
+  const { isDark } = React.useContext(ThemeContext);
 
-  const createThreeButtonAlert = () =>
+  const createTwoButtonAlert = () => {
+    Alert.alert(
+      'Alert Title',
+      'My Alert Msg',
+      [
+        {
+          text: 'Cancel',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'destructive',
+        },
+        { text: 'OK', onPress: () => console.log('OK Pressed') },
+      ],
+      {
+        userInterfaceStyle: isDark ? 'dark' : 'light',
+      }
+    );
+  };
+
+  const createThreeButtonAlert = () => {
     Alert.alert(
       'Alert Title',
       'My Alert Msg',
@@ -37,8 +49,10 @@ export function AlertScreen() {
         onDismiss() {
           console.log('onDismiss');
         },
+        userInterfaceStyle: isDark ? 'dark' : 'light',
       }
     );
+  };
 
   const onShowPrompt = () => {
     // ! react-native-prompt-android code adapter

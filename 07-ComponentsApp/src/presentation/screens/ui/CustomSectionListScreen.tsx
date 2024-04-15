@@ -1,12 +1,13 @@
+import React from 'react';
 import { SectionList, Text, useWindowDimensions } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { colors } from '~/config/theme/theme';
 import { Card } from '~/presentation/components/ui/Card';
 import { CustomView } from '~/presentation/components/ui/CustomView';
 import { Separator } from '~/presentation/components/ui/Separator';
 import { SubTitle } from '~/presentation/components/ui/SubTitle';
 import { Title } from '~/presentation/components/ui/Title';
+import { ThemeContext } from '~/presentation/context/ThemeContext';
 
 interface Houses {
   title: string;
@@ -91,6 +92,7 @@ const houses: Houses[] = [
 ];
 
 export function CustomSectionListScreen() {
+  const { colors } = React.useContext(ThemeContext);
   const { height } = useWindowDimensions();
   const { top } = useSafeAreaInsets();
 
@@ -102,7 +104,9 @@ export function CustomSectionListScreen() {
         <SectionList
           sections={houses}
           keyExtractor={(item) => item}
-          renderItem={({ item }) => <Text style={{ marginVertical: 2 }}>{item}</Text>}
+          renderItem={({ item }) => (
+            <Text style={{ color: colors.text, marginVertical: 2 }}>{item}</Text>
+          )}
           renderSectionHeader={({ section }) => (
             <SubTitle text={section.title} backgroundColor={colors.cardBackground} />
           )}

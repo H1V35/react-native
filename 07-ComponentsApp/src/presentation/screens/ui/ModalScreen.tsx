@@ -4,8 +4,10 @@ import { Modal, Platform, View } from 'react-native';
 import { Button } from '~/presentation/components/ui/Button';
 import { CustomView } from '~/presentation/components/ui/CustomView';
 import { Title } from '~/presentation/components/ui/Title';
+import { ThemeContext } from '~/presentation/context/ThemeContext';
 
 export function ModalScreen() {
+  const { colors } = React.useContext(ThemeContext);
   const [isVisible, setIsVisible] = React.useState(false);
 
   return (
@@ -15,7 +17,7 @@ export function ModalScreen() {
       <Button text="Open modal" onPress={() => setIsVisible(true)} />
 
       <Modal visible={isVisible} animationType="slide">
-        <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.1)' }}>
+        <View style={{ flex: 1, backgroundColor: colors.cardBackground }}>
           <View style={{ paddingHorizontal: 10 }}>
             <Title text="Modal content" safe />
           </View>

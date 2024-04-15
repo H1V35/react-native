@@ -1,5 +1,7 @@
 import { createStackNavigator } from '@react-navigation/stack';
+import React from 'react';
 
+import { ThemeContext } from '~/presentation/context/ThemeContext';
 import { AlertScreen } from '~/presentation/screens/alerts/AlertScreen';
 import { Animation101Screen } from '~/presentation/screens/animations/Animation101Screen';
 import { Animation102Screen } from '~/presentation/screens/animations/Animation102Screen';
@@ -16,10 +18,15 @@ import { SlidesScreen } from '~/presentation/screens/ui/SlidesScreen';
 const Stack = createStackNavigator();
 
 export function StackNavigator() {
+  const { colors } = React.useContext(ThemeContext);
+
   return (
     <Stack.Navigator
       screenOptions={{
         headerShown: false,
+        cardStyle: {
+          backgroundColor: colors.background,
+        },
       }}>
       <Stack.Screen name="HomeScreen" component={HomeScreen} />
       <Stack.Screen name="Animation101Screen" component={Animation101Screen} />

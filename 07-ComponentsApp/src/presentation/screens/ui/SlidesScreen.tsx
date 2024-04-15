@@ -11,8 +11,9 @@ import {
 } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 
-import { colors, globalStyles } from '~/config/theme/theme';
+import { globalStyles } from '~/config/theme/theme';
 import { Button } from '~/presentation/components/ui/Button';
+import { ThemeContext } from '~/presentation/context/ThemeContext';
 
 interface Slide {
   title: string;
@@ -39,6 +40,7 @@ const items: Slide[] = [
 ];
 
 export function SlidesScreen() {
+  const { colors } = React.useContext(ThemeContext);
   const [currentSlideIndex, setCurrentSlideIndex] = React.useState(0);
   const flatListRef = React.useRef<FlatList>(null);
   const navigation = useNavigation();
@@ -98,13 +100,14 @@ interface SlideItemProps {
 }
 
 const SlideItem = ({ item: { title, desc, img } }: SlideItemProps) => {
+  const { colors } = React.useContext(ThemeContext);
   const { width } = useWindowDimensions();
 
   return (
     <View
       style={{
         flex: 1,
-        backgroundColor: 'white',
+        backgroundColor: colors.background,
         borderRadius: 5,
         padding: 40,
         justifyContent: 'center',

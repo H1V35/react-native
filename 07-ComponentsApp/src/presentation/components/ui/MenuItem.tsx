@@ -1,10 +1,10 @@
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
+import React from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
-import { Separator } from './Separator';
-
-import { colors } from '~/config/theme/theme';
+import { Separator } from '~/presentation/components/ui/Separator';
+import { ThemeContext } from '~/presentation/context/ThemeContext';
 
 interface Props {
   name: string;
@@ -17,6 +17,7 @@ interface Props {
 
 export function MenuItem({ name, icon, component, isFirst = false, isLast = false }: Props) {
   const navigation = useNavigation<any>();
+  const { colors } = React.useContext(ThemeContext);
 
   return (
     <>

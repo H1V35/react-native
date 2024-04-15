@@ -1,6 +1,7 @@
+import React from 'react';
 import { Platform, StyleSheet, Switch, Text, View } from 'react-native';
 
-import { colors } from '~/config/theme/theme';
+import { ThemeContext } from '~/presentation/context/ThemeContext';
 
 interface Props {
   isOn: boolean;
@@ -9,12 +10,19 @@ interface Props {
 }
 
 export function CustomSwitch({ isOn, text, onChange }: Props) {
+  const { colors } = React.useContext(ThemeContext);
+
   return (
-    <View style={styles.switchRow}>
+    <View
+      style={[
+        styles.switchRow,
+        {
+          backgroundColor: colors.cardBackground,
+        },
+      ]}>
       {text && <Text style={{ color: colors.text }}>{text}</Text>}
 
       <Switch
-        trackColor={Platform.OS === 'android' ? {} : { false: '#767577', true: '#81b0ff' }}
         thumbColor={Platform.OS === 'android' ? colors.primary : ''}
         ios_backgroundColor="#3e3e3e"
         onValueChange={onChange}

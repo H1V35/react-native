@@ -2,10 +2,11 @@ import React from 'react';
 import { ActivityIndicator, View } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 
-import { colors } from '~/config/theme/theme';
 import { FadeInImage } from '~/presentation/components/ui/FadeInImage';
+import { ThemeContext } from '~/presentation/context/ThemeContext';
 
 export function InfiniteScrollScreen() {
+  const { colors } = React.useContext(ThemeContext);
   const [numbers, setNumbers] = React.useState([0, 1, 2, 3, 4, 5]);
 
   const loadMore = () => {
