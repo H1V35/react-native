@@ -1,7 +1,18 @@
-import { Image, ImageSourcePropType, Text, View, useWindowDimensions } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import React from 'react';
+import {
+  Image,
+  ImageSourcePropType,
+  NativeScrollEvent,
+  NativeSyntheticEvent,
+  Text,
+  View,
+  useWindowDimensions,
+} from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 
 import { colors, globalStyles } from '~/config/theme/theme';
+import { Button } from '~/presentation/components/ui/Button';
 
 interface Slide {
   title: string;
@@ -28,6 +39,26 @@ const items: Slide[] = [
 ];
 
 export function SlidesScreen() {
+  const [currentSlideIndex, setCurrentSlideIndex] = React.useState(0);
+  const flatListRef = React.useRef<FlatList>(null);
+  const navigation = useNavigation();
+
+  const onScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
+    const { contentOffset, layoutMeasurement } = event.nativeEvent;
+    const currentIndex = Math.floor(contentOffset.x / layoutMeasurement.width);
+
+    setCurrentSlideIndex(currentIndex > 0 ? currentIndex : 0);
+  };
+
+  const scrollToSlide = (index: number) => {
+    if (!flatListRef.current) return;
+
+    flatListRef.current.scrollToIndex({
+      index,
+      animated: true,
+    });
+  };
+
   return (
     <View
       style={{
@@ -35,12 +66,29 @@ export function SlidesScreen() {
         backgroundColor: colors.background,
       }}>
       <FlatList
+        ref={flatListRef}
         data={items}
         keyExtractor={(item) => item.title}
         renderItem={({ item }) => <SlideItem item={item} />}
         horizontal
         pagingEnabled
+        scrollEnabled={false}
+        onScroll={onScroll}
       />
+
+      {currentSlideIndex === items.length - 1 ? (
+        <Button
+          text="End"
+          style={{ position: 'absolute', bottom: 60, right: 30, width: 100 }}
+          onPress={() => navigation.goBack()}
+        />
+      ) : (
+        <Button
+          text="Next"
+          style={{ position: 'absolute', bottom: 60, right: 30, width: 100 }}
+          onPress={() => scrollToSlide(currentSlideIndex + 1)}
+        />
+      )}
     </View>
   );
 }
