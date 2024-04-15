@@ -6,6 +6,7 @@ import { Animation102Screen } from '~/presentation/screens/animations/Animation1
 import { HomeScreen } from '~/presentation/screens/home/HomeScreen';
 import { TextInputScreen } from '~/presentation/screens/inputs/TextInputScreen';
 import { SwitchScreen } from '~/presentation/screens/switches/SwitchScreen';
+import { ChangeThemeScreen } from '~/presentation/screens/theme-changer/ChangeThemeScreen';
 import { CustomSectionListScreen } from '~/presentation/screens/ui/CustomSectionListScreen';
 import { InfiniteScrollScreen } from '~/presentation/screens/ui/InfiniteScrollScreen';
 import { ModalScreen } from '~/presentation/screens/ui/ModalScreen';
@@ -33,6 +34,7 @@ export function StackNavigator() {
       <Stack.Screen name="ModalScreen" component={ModalScreen} />
       <Stack.Screen name="InfiniteScrollScreen" component={InfiniteScrollScreen} />
       <Stack.Screen name="SlidesScreen" component={SlidesScreen} />
+      <Stack.Screen name="ChangeThemeScreen" component={ChangeThemeScreen} />
     </Stack.Navigator>
   );
 }
