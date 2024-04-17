@@ -22,7 +22,6 @@ function getSprites(data: PokeAPIPokemon): string[] {
     data.sprites.back_shiny,
   ];
 
-  if (data.sprites.other?.home.front_default) sprites.push(data.sprites.other?.home.front_default);
   if (data.sprites.other?.['official-artwork'].front_default)
     sprites.push(data.sprites.other?.['official-artwork'].front_default);
   if (data.sprites.other?.['official-artwork'].front_shiny)
