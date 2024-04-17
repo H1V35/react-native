@@ -80,6 +80,70 @@ export function PokemonScreen({ navigation, route }: Props) {
         )}
       />
 
+      <Text style={styles.subTitle}>Abilities</Text>
+      <FlatList
+        data={pokemon.abilities}
+        horizontal
+        keyExtractor={(item) => item}
+        showsHorizontalScrollIndicator={false}
+        renderItem={({ item }) => (
+          <View style={styles.dataContainer}>
+            <Text style={{ flex: 1, marginTop: 3, color: 'white' }}>
+              {Formatter.capitalize(item)}
+            </Text>
+          </View>
+        )}
+      />
+
+      <Text style={styles.subTitle}>Stats</Text>
+
+      <FlatList
+        data={pokemon.stats}
+        keyExtractor={(item) => item.name}
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        renderItem={({ item }) => (
+          <View style={styles.dataContainer}>
+            <Text style={{ flex: 1, marginTop: 3, color: 'white' }}>
+              {Formatter.capitalize(item.name)}
+            </Text>
+            <Text style={{ color: 'white' }}>{item.value}</Text>
+          </View>
+        )}
+      />
+
+      <Text style={styles.subTitle}>Moves</Text>
+      <FlatList
+        data={pokemon.moves}
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        centerContent
+        renderItem={({ item }) => (
+          <View style={styles.dataContainer}>
+            <Text style={{ flex: 1, marginTop: 3, color: 'white' }}>
+              {Formatter.capitalize(item.name)}
+            </Text>
+            <Text style={{ color: 'white' }}>lvl {item.level}</Text>
+          </View>
+        )}
+      />
+
+      <Text style={styles.subTitle}>Games</Text>
+      <FlatList
+        data={pokemon.games}
+        horizontal
+        keyExtractor={(item) => item}
+        showsHorizontalScrollIndicator={false}
+        centerContent
+        renderItem={({ item }) => (
+          <View style={styles.dataContainer}>
+            <Text style={{ flex: 1, marginTop: 3, color: 'white' }}>
+              {Formatter.capitalize(item)}
+            </Text>
+          </View>
+        )}
+      />
+
       <View style={{ height: 100 }} />
     </ScrollView>
   );
@@ -124,7 +188,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 20,
     marginTop: 20,
   },
-  statsContainer: {
+  dataContainer: {
     flexDirection: 'column',
     marginHorizontal: 20,
     alignItems: 'center',
