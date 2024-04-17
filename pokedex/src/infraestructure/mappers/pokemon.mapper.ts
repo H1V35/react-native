@@ -14,7 +14,7 @@ export function pokeApiPokemonToEntity(data: PokeAPIPokemon): Pokemon {
   };
 }
 
-export function getSprites(data: PokeAPIPokemon): string[] {
+function getSprites(data: PokeAPIPokemon): string[] {
   const sprites: string[] = [
     data.sprites.front_default,
     data.sprites.back_default,

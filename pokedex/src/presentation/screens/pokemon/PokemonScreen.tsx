@@ -48,7 +48,8 @@ export function PokemonScreen({ navigation, route }: Props) {
             ...styles.pokemonName,
             top: top + 5,
           }}>
-          {Formatter.capitalize(pokemon.name) + '\n'}#{pokemon.id}
+          {Formatter.capitalize(pokemon.name)}
+          {'\n#' + pokemon.id}
         </Text>
 
         <Image source={pokeballImg} style={styles.pokeball} />

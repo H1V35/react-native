@@ -1,8 +1,11 @@
+import React from 'react';
 import { View } from 'react-native';
-import { ActivityIndicator, useTheme } from 'react-native-paper';
+import { ActivityIndicator } from 'react-native-paper';
+
+import { ThemeContext } from '~/presentation/context/ThemeContext';
 
 export function FullScreenLoader() {
-  const { colors } = useTheme();
+  const { theme } = React.useContext(ThemeContext);
 
   return (
     <View
@@ -10,9 +13,9 @@ export function FullScreenLoader() {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: colors.background,
+        backgroundColor: theme.colors.background,
       }}>
-      <ActivityIndicator size={50} />
+      <ActivityIndicator color={theme.colors.text} size={50} />
     </View>
   );
 }

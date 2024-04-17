@@ -2,10 +2,10 @@ import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { Image, Pressable, StyleSheet, View } from 'react-native';
 import { Card, Text } from 'react-native-paper';
 
-import { RootStackParams } from '../../navigator/StackNavigator';
-
+import { Formatter } from '~/config/helpers/formatter';
 import { type Pokemon } from '~/domain/entities/pokemon';
 import { FadeInImage } from '~/presentation/components/ui/FadeInImage';
+import { RootStackParams } from '~/presentation/navigator/StackNavigator';
 
 interface Props {
   pokemon: Pokemon;
@@ -20,7 +20,7 @@ export function PokemonCard({ pokemon }: Props) {
       onPress={() => navigation.navigate('PokemonScreen', { pokemonId: pokemon.id })}>
       <Card style={[styles.cardContainer]}>
         <Text style={styles.name} variant="bodyLarge" lineBreakMode="middle">
-          {pokemon.name}
+          {Formatter.capitalize(pokemon.name)}
           {'\n#' + pokemon.id}
         </Text>
 
@@ -62,8 +62,8 @@ const styles = StyleSheet.create({
   pokeball: {
     width: 100,
     height: 100,
-    right: -25,
-    top: -25,
+    right: -20,
+    top: -30,
     opacity: 0.4,
   },
   pokemonImage: {
