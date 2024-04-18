@@ -1,5 +1,6 @@
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { useInfiniteQuery, useQueryClient } from '@tanstack/react-query';
+import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 import { Text } from 'react-native-paper';
@@ -10,6 +11,7 @@ import { globalTheme } from '~/config/theme/global-theme';
 import { PokemonCard } from '~/presentation/components/pokemons/PokemonCard';
 import { PokeballBg } from '~/presentation/components/ui/PokeballBg';
 import { SearchButton } from '~/presentation/components/ui/SearchButton';
+import { ThemeContext } from '~/presentation/context/ThemeContext';
 import { RootStackParams } from '~/presentation/navigator/StackNavigator';
 
 export function HomeScreen() {
@@ -57,12 +59,17 @@ export function HomeScreen() {
 }
 
 function HomeListHeader() {
+  const { theme } = React.useContext(ThemeContext);
   const navigation = useNavigation<NavigationProp<RootStackParams>>();
 
   return (
     <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
       <Text variant="displayMedium">Pokédex</Text>
-      <SearchButton onPress={() => navigation.navigate('SearchScreen')} size={45} />
+      <SearchButton
+        onPress={() => navigation.navigate('SearchScreen')}
+        color={theme.colors.text}
+        size={45}
+      />
     </View>
   );
 }
