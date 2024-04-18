@@ -63,12 +63,18 @@ function HomeListHeader() {
   const navigation = useNavigation<NavigationProp<RootStackParams>>();
 
   return (
-    <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+    <View
+      style={{
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        marginBottom: 10,
+      }}>
       <Text variant="displayMedium">Pokédex</Text>
       <SearchButton
-        onPress={() => navigation.navigate('SearchScreen')}
         color={theme.colors.text}
         size={45}
+        onPress={() => navigation.navigate('SearchScreen')}
       />
     </View>
   );
