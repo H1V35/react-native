@@ -14,7 +14,7 @@ import { RootStackParams } from '~/presentation/navigator/StackNavigator';
 
 interface Props extends StackScreenProps<RootStackParams, 'PokemonScreen'> {}
 
-export function PokemonScreen({ navigation, route }: Props) {
+export function PokemonScreen({ route }: Props) {
   const { isDark } = useContext(ThemeContext);
   const { top } = useSafeAreaInsets();
   const { pokemonId } = route.params;
