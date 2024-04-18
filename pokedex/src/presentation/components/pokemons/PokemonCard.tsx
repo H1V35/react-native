@@ -72,6 +72,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     right: -15,
     top: -30,
+    zIndex: -10,
   },
 
   pokeballContainer: {
@@ -81,5 +82,6 @@ const styles = StyleSheet.create({
 
     overflow: 'hidden',
     opacity: 0.5,
+    zIndex: -20,
   },
 });

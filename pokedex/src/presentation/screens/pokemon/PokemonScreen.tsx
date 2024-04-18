@@ -1,6 +1,5 @@
 import { StackScreenProps } from '@react-navigation/stack';
 import { useQuery } from '@tanstack/react-query';
-import { useContext } from 'react';
 import { FlatList, Image, ScrollView, StyleSheet, View } from 'react-native';
 import { Chip, Text } from 'react-native-paper';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -9,19 +8,15 @@ import { getPokemonById } from '~/actions/pokemons/get-pokemon-by-id';
 import { Formatter } from '~/config/helpers/formatter';
 import { FadeInImage } from '~/presentation/components/ui/FadeInImage';
 import { FullScreenLoader } from '~/presentation/components/ui/FullScreenLoader';
-import { ThemeContext } from '~/presentation/context/ThemeContext';
 import { RootStackParams } from '~/presentation/navigator/StackNavigator';
 
 interface Props extends StackScreenProps<RootStackParams, 'PokemonScreen'> {}
 
 export function PokemonScreen({ route }: Props) {
-  const { isDark } = useContext(ThemeContext);
   const { top } = useSafeAreaInsets();
   const { pokemonId } = route.params;
 
-  const pokeballImg = isDark
-    ? require('~/assets/pokeball-light.png')
-    : require('~/assets/pokeball-dark.png');
+  const pokeballImg = require('~/assets/pokeball-light.png');
 
   const { isLoading, data: pokemon } = useQuery({
     queryKey: ['pokemon', pokemonId],
@@ -46,7 +41,7 @@ export function PokemonScreen({ route }: Props) {
         <Text
           style={{
             ...styles.pokemonName,
-            top: top + 5,
+            top: top + 15,
           }}>
           {Formatter.capitalize(pokemon.name)}
           {'\n#' + pokemon.id}
@@ -59,7 +54,10 @@ export function PokemonScreen({ route }: Props) {
 
       <View style={{ flexDirection: 'row', marginHorizontal: 20, marginTop: 10 }}>
         {pokemon.types.map((type) => (
-          <Chip key={type} mode="outlined" selectedColor="white" style={{ marginLeft: 10 }}>
+          <Chip
+            key={type}
+            selectedColor="white"
+            style={{ marginLeft: 10, backgroundColor: 'rgba(0,0,0,0.2)' }}>
             {type}
           </Chip>
         ))}
