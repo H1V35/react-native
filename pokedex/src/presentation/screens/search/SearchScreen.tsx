@@ -1,16 +1,17 @@
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
-import { View } from 'react-native';
+import { Platform, View } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 import { ActivityIndicator, TextInput } from 'react-native-paper';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { getPokemonNamesWithId } from '~/actions/pokemons/get-pokemon-names-with-id';
+import { getPokemonsByIds } from '~/actions/pokemons/get-pokemons-by-ids';
 import { globalTheme } from '~/config/theme/global-theme';
-import { Pokemon } from '~/domain/entities/pokemon';
 import { PokemonCard } from '~/presentation/components/pokemons/PokemonCard';
 import { BackButton } from '~/presentation/components/ui/BackButton';
+import { FullScreenLoader } from '~/presentation/components/ui/FullScreenLoader';
 import { ThemeContext } from '~/presentation/context/ThemeContext';
 import { RootStackParams } from '~/presentation/navigator/StackNavigator';
 
@@ -37,6 +38,16 @@ export function SearchScreen() {
     return pokemonNameList.filter((pokemon) => pokemon.name.includes(term.toLocaleLowerCase()));
   }, [term]);
 
+  const { isLoading: isLoadingPokemons, data: pokemons = [] } = useQuery({
+    queryKey: ['pokemons', 'by', pokemonNameIdList],
+    queryFn: () => getPokemonsByIds(pokemonNameIdList.map((pokemon) => pokemon.id)),
+    staleTime: 1000 * 60 * 5,
+  });
+
+  if (isLoading) {
+    return <FullScreenLoader />;
+  }
+
   return (
     <View style={[globalTheme.globalMargin, { paddingTop: top + 20 }]}>
       <View
@@ -61,19 +72,23 @@ export function SearchScreen() {
             flexGrow: 1,
             fontSize: 28,
             marginRight: 5,
+            marginBottom: 6,
           }}
         />
       </View>
 
-      <ActivityIndicator color={theme.colors.text} size={30} style={{ paddingTop: 20 }} />
+      {isLoadingPokemons && (
+        <ActivityIndicator color={theme.colors.text} size={30} style={{ paddingTop: 20 }} />
+      )}
 
       <FlatList
-        data={[] as Pokemon[]}
+        data={pokemons}
         keyExtractor={(pokemon, index) => `${pokemon.id}-${index}`}
         numColumns={2}
-        style={{ paddingTop: 10 }}
+        style={{ paddingTop: 14 }}
         showsVerticalScrollIndicator={false}
         renderItem={({ item }) => <PokemonCard pokemon={item} />}
+        ListFooterComponent={<View style={{ height: Platform.OS === 'ios' ? 90 : 80 }} />}
       />
     </View>
   );
