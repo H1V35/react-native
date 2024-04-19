@@ -13,13 +13,16 @@ import { PokemonCard } from '~/presentation/components/pokemons/PokemonCard';
 import { BackButton } from '~/presentation/components/ui/BackButton';
 import { FullScreenLoader } from '~/presentation/components/ui/FullScreenLoader';
 import { ThemeContext } from '~/presentation/context/ThemeContext';
+import { useDebouncedValue } from '~/presentation/hooks/useDebouncedValue';
 import { RootStackParams } from '~/presentation/navigator/StackNavigator';
 
 export function SearchScreen() {
-  const [term, setTerm] = React.useState('');
   const { theme } = React.useContext(ThemeContext);
   const navigation = useNavigation<NavigationProp<RootStackParams>>();
   const { top } = useSafeAreaInsets();
+  const [term, setTerm] = React.useState('');
+
+  const debouncedValue = useDebouncedValue(term);
 
   const { isLoading, data: pokemonNameList = [] } = useQuery({
     queryKey: ['pokemons', 'all'],
@@ -27,16 +30,18 @@ export function SearchScreen() {
   });
 
   const pokemonNameIdList = React.useMemo(() => {
-    if (!isNaN(Number(term))) {
-      const pokemon = pokemonNameList.find((pokemon) => pokemon.id === Number(term));
+    if (!isNaN(Number(debouncedValue))) {
+      const pokemon = pokemonNameList.find((pokemon) => pokemon.id === Number(debouncedValue));
       return pokemon ? [pokemon] : [];
     }
 
-    if (term.length === 0) return [];
-    if (term.length < 3) return [];
+    if (debouncedValue.length === 0) return [];
+    if (debouncedValue.length < 3) return [];
 
-    return pokemonNameList.filter((pokemon) => pokemon.name.includes(term.toLocaleLowerCase()));
-  }, [term]);
+    return pokemonNameList.filter((pokemon) =>
+      pokemon.name.includes(debouncedValue.toLocaleLowerCase())
+    );
+  }, [debouncedValue]);
 
   const { isLoading: isLoadingPokemons, data: pokemons = [] } = useQuery({
     queryKey: ['pokemons', 'by', pokemonNameIdList],
