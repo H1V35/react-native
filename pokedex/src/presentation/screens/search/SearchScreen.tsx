@@ -15,6 +15,7 @@ import { ThemeContext } from '~/presentation/context/ThemeContext';
 import { RootStackParams } from '~/presentation/navigator/StackNavigator';
 
 export function SearchScreen() {
+  const [term, setTerm] = React.useState('');
   const { theme } = React.useContext(ThemeContext);
   const navigation = useNavigation<NavigationProp<RootStackParams>>();
   const { top } = useSafeAreaInsets();
@@ -23,6 +24,18 @@ export function SearchScreen() {
     queryKey: ['pokemons', 'all'],
     queryFn: () => getPokemonNamesWithId(),
   });
+
+  const pokemonNameIdList = React.useMemo(() => {
+    if (!isNaN(Number(term))) {
+      const pokemon = pokemonNameList.find((pokemon) => pokemon.id === Number(term));
+      return pokemon ? [pokemon] : [];
+    }
+
+    if (term.length === 0) return [];
+    if (term.length < 3) return [];
+
+    return pokemonNameList.filter((pokemon) => pokemon.name.includes(term.toLocaleLowerCase()));
+  }, [term]);
 
   return (
     <View style={[globalTheme.globalMargin, { paddingTop: top + 20 }]}>
@@ -39,7 +52,8 @@ export function SearchScreen() {
           mode="flat"
           autoFocus
           autoCorrect={false}
-          onChangeText={(value) => console.log(value)}
+          value={term}
+          onChangeText={setTerm}
           selectionColor={theme.colors.text}
           activeUnderlineColor={theme.colors.text}
           style={{
