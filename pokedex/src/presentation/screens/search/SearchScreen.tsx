@@ -1,10 +1,12 @@
 import { NavigationProp, useNavigation } from '@react-navigation/native';
+import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import { View } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 import { ActivityIndicator, TextInput } from 'react-native-paper';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
+import { getPokemonNamesWithId } from '~/actions/pokemons/get-pokemon-names-with-id';
 import { globalTheme } from '~/config/theme/global-theme';
 import { Pokemon } from '~/domain/entities/pokemon';
 import { PokemonCard } from '~/presentation/components/pokemons/PokemonCard';
@@ -16,6 +18,11 @@ export function SearchScreen() {
   const { theme } = React.useContext(ThemeContext);
   const navigation = useNavigation<NavigationProp<RootStackParams>>();
   const { top } = useSafeAreaInsets();
+
+  const { isLoading, data: pokemonNameList = [] } = useQuery({
+    queryKey: ['pokemons', 'all'],
+    queryFn: () => getPokemonNamesWithId(),
+  });
 
   return (
     <View style={[globalTheme.globalMargin, { paddingTop: top + 20 }]}>
