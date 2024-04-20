@@ -1,9 +1,9 @@
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { useInfiniteQuery, useQueryClient } from '@tanstack/react-query';
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { Platform, StyleSheet, View } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
-import { Text } from 'react-native-paper';
+import { ActivityIndicator, Text } from 'react-native-paper';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { getPokemons } from '~/actions/pokemons/get-pokemons';
@@ -24,7 +24,7 @@ export function HomeScreen() {
   //   staleTime: 1000 * 60 * 60,
   // });
 
-  const { isLoading, data, fetchNextPage } = useInfiniteQuery({
+  const { isFetching, data, fetchNextPage } = useInfiniteQuery({
     queryKey: ['pokemons', 'infinite'],
     initialPageParam: 0,
     staleTime: 1000 * 60 * 60,
@@ -50,6 +50,7 @@ export function HomeScreen() {
         style={{ paddingTop: top + 20 }}
         showsVerticalScrollIndicator={false}
         ListHeaderComponent={() => <HomeListHeader />}
+        ListFooterComponent={() => <HomeListFooter isFetching={isFetching} />}
         renderItem={({ item }) => <PokemonCard pokemon={item} />}
         onEndReachedThreshold={0.6}
         onEndReached={() => fetchNextPage()}
@@ -76,6 +77,16 @@ function HomeListHeader() {
         size={45}
         onPress={() => navigation.navigate('SearchScreen')}
       />
+    </View>
+  );
+}
+
+function HomeListFooter({ isFetching }: { isFetching: boolean }) {
+  const { theme } = React.useContext(ThemeContext);
+
+  return (
+    <View style={{ height: Platform.OS === 'ios' ? 150 : 100 }}>
+      {isFetching && <ActivityIndicator color={theme.colors.text} size={30} />}
     </View>
   );
 }
