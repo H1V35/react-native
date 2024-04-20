@@ -30,7 +30,7 @@ export function PokemonCard({ pokemon }: Props) {
 
         <FadeInImage uri={pokemon.avatar} style={styles.pokemonImage} />
 
-        <Text style={[styles.name, { marginTop: 35 }]}>{pokemon.types[0]}</Text>
+        <Text style={[styles.name, { marginTop: 40 }]}>{pokemon.types[0]}</Text>
       </Card>
     </Pressable>
   );
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
   },
   name: {
     color: 'white',
-    top: 10,
+    top: 6,
     left: 10,
   },
   pokeball: {
