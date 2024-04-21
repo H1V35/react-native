@@ -4,7 +4,7 @@
     "slug": "pokedex",
     "version": "1.0.0",
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/pokeball-icon.png"
     },
     "experiments": {
       "tsconfigPaths": true
@@ -13,21 +13,18 @@
     "icon": "./assets/pokeball-icon.png",
     "userInterfaceStyle": "automatic",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/pokeball-icon.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "userInterfaceStyle": "automatic",
       "supportsTablet": true
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "foregroundImage": "./assets/pokeball-icon.png"
       },
       "userInterfaceStyle": "automatic",
       "package": "com.hive73.pokedex"
