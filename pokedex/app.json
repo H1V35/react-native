@@ -13,9 +13,9 @@
     "icon": "./assets/pokeball-icon.png",
     "userInterfaceStyle": "automatic",
     "splash": {
-      "image": "./assets/pokeball-icon.png",
+      "image": "./assets/pokeball-light.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#757575"
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {

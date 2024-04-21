@@ -1,7 +1,7 @@
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
-import { Platform, View } from 'react-native';
+import { Platform, StyleSheet, View, useWindowDimensions } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 import { ActivityIndicator, TextInput } from 'react-native-paper';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -12,6 +12,7 @@ import { globalTheme } from '~/config/theme/global-theme';
 import { PokemonCard } from '~/presentation/components/pokemons/PokemonCard';
 import { BackButton } from '~/presentation/components/ui/BackButton';
 import { FullScreenLoader } from '~/presentation/components/ui/FullScreenLoader';
+import { PokeballBg } from '~/presentation/components/ui/PokeballBg';
 import { ThemeContext } from '~/presentation/context/ThemeContext';
 import { useDebouncedValue } from '~/presentation/hooks/useDebouncedValue';
 import { RootStackParams } from '~/presentation/navigator/StackNavigator';
@@ -19,6 +20,7 @@ import { RootStackParams } from '~/presentation/navigator/StackNavigator';
 export function SearchScreen() {
   const { theme } = React.useContext(ThemeContext);
   const navigation = useNavigation<NavigationProp<RootStackParams>>();
+  const { height } = useWindowDimensions();
   const { top } = useSafeAreaInsets();
   const [term, setTerm] = React.useState('');
 
@@ -55,6 +57,8 @@ export function SearchScreen() {
 
   return (
     <View style={[globalTheme.globalMargin, { paddingTop: top + 20 }]}>
+      <PokeballBg style={styles.imgPosition} />
+
       <View
         style={{
           flexDirection: 'row',
@@ -98,3 +102,11 @@ export function SearchScreen() {
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  imgPosition: {
+    position: 'absolute',
+    top: -100,
+    right: -100,
+  },
+});
