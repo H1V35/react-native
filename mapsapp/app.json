@@ -12,7 +12,14 @@
       "tsconfigPaths": true
     },
 
-    "plugins": [],
+    "plugins": [
+      [
+        "react-native-permissions",
+        {
+          "iosPermissions": ["LocationAccuracy", "LocationAlways", "LocationWhenInUse"]
+        }
+      ]
+    ],
 
     "orientation": "portrait",
     "icon": "./assets/icon.png",
